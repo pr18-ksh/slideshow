@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>FetchAPI,GET,POST,PUT,DELETE</h1> 
+    <input  type="url" id="apitesting" name="fakeapi">
+    <button type="submit" id="mybtn" onclick="get()">GET</button>
+    <button type="submit" id="mybtn" onclick="create()">POST</button>
+    <button type="submit" id="mybtn" onclick="Put()">PUT</button>
+    <button type="submit" id="mybtn" onclick="del()">DELETE</button>
+    <div id="demo">
+
+    </div>
+   
+ </body>
+
+<script type=text/javascript>
+
+ function get() 
+ {
+    let inputs= document.getElementById('apitesting').value;
+    fetch(inputs,{
+        method:"GET",
+    })
+    .then(res =>res.text()) 
+    .then(text =>{
+            document.getElementById("demo").innerHTML = "<br>"+ text;
+            
+    })
+    .catch(error => {
+    // Handle any errors
+    console.error(error);
+    })
+     
+ }   
+   
+function create() 
+{
+    let inputs= document.getElementById('apitesting').value;
+    fetch(inputs,{
+    method:"POST",
+    headers:{
+        'content-Type':'application/json'
+    },
+    body:JSON.stringify({
+            "name":"jimmy",
+            "job":"developer"
+        })
+     })
+    .then(res =>res.text())
+    .then(text =>{
+            document.getElementById("demo").innerHTML = "<br>"+"<textarea rows='4' cols='81'>"+text+"</textarea>";        
+    })
+    .catch(error => {
+    // Handle any errors
+    console.error(error);
+    })
+}
+function Put() {
+    let inputs= document.getElementById('apitesting').value;
+    fetch(inputs,{
+    method: 'PUT',
+    body: JSON.stringify({
+    id: 1,
+    title: "pratik",
+    body: "kshirsagar",
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then((response) => response.text())
+  .then((text) => document.getElementById("demo").innerHTML = "<br>"+"<textarea rows='4' cols='81'>"+text+"</textarea>");
+    
+}
+   function del() 
+   {
+    let inputs= document.getElementById('apitesting').value;
+
+    fetch(inputs,{
+    method:"DELETE",
+    headers:{
+        'content-Type':'application/json'
+    },
+   })
+   .then(res =>res.text())
+    .then(text =>{
+            document.getElementById("demo").innerHTML = "<br>"+ text;        
+    })
+    .catch(error => {
+    // Handle any errors
+    console.error(error);
+    })
+   }
+</script>
+</html>

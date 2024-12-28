@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet"  type="text/css">
+   <title>slideshow</title>
+   <style>
+      .myslides {
+         display:none;
+      }
+      </style>
+</head>
+
+<body>
+
+    <div id="title1">
+      
+    </div>
+   <!--full width images with number and text-->
+   <div id="slides">
+    
+   </div>
+
+   <button type="button" class="displayright" onclick="left()">back</button>
+   <button type="button" class="displayleft" onclick="right()">next</button>
+
+   <!--Next and prev buttons-->
+</body>
+
+<script type="text/javascript">
+
+//let flag= 0;//to indicates the images of index show that
+
+let images =["pictures/images.jpg","pictures/images(1).jpg","pictures/images(2).jpg","pictures/images(3).jpg"];
+let index=0;
+let endIndex=images.length;
+document.getElementById('slides').innerHTML="<img src="+images[index]+" height='200px' width='300px'/>"; 
+
+function left()
+{
+    if(index == 0)
+    {
+      index= images.length-1; 
+    }
+    else
+    {
+      index=index-1;
+    }
+     document.getElementById('slides').innerHTML="<img src="+images[index]+" height='200px' width='300px'/>";
+}
+function right()
+{
+   if(index == images.length-1)
+   {
+      index=0;
+   }
+   else
+   {
+      index+=1;
+   }
+   document.getElementById('slides').innerHTML="<img src="+images[index]+" height='200px' width='300px'/>";
+   
+}
+
+</script>
+
+</html>
